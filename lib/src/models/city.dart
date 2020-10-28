@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:weather_conditions_flutter/src/models/coordinates.dart';
 
 class City {
@@ -13,7 +11,7 @@ class City {
     return City(
       id: json['id'] as int,
       name: json['name'] as String,
-      coordinates: Coordinates.fromJson(jsonDecode(json['coord']).cast<Map<String, dynamic>>()),
+      coordinates: Coordinates.fromJson(json['coord']),
       country: json['country'] as String,
       timezone: json['timezone'] as int
     );

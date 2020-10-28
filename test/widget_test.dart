@@ -7,8 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'file:///C:/Users/lucar/Desktop/Lucarex/flutter_projects/weather_conditions_flutter/lib/src/main.dart';
+import 'package:weather_conditions_flutter/src/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

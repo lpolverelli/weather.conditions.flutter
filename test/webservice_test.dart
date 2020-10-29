@@ -22,15 +22,15 @@ main() {
         '{'
           '"dt": 1603810800,'
           '"main": {'
-            '"temp": 293.14'
+           '"temp": 293.14'
           '},'
           '"weather": ['
-              '{'
-                '"id": 803,'
-                '"main": "Clouds",'
-                '"description": "broken clouds",'
-                '"icon": "04d"'
-              '}'
+            '{'
+              '"id": 803,'
+              '"main": "Clouds",'
+              '"description": "broken clouds",'
+              '"icon": "04d"'
+            '}'
           ']'
         '},'
         '{'
@@ -39,12 +39,12 @@ main() {
             '"temp": 295.42'
           '},'
           '"weather": ['
-              '{'
-                '"id": 803,'
-                '"main": "Clouds",'
-                '"description": "broken clouds",'
-                '"icon": "04d"'
-              '}'
+            '{'
+              '"id": 803,'
+              '"main": "Clouds",'
+              '"description": "broken clouds",'
+              '"icon": "04d"'
+            '}'
           ']'
         '},'
         '{'
@@ -53,18 +53,18 @@ main() {
             '"temp": 285.3'
           '},'
           '"weather": ['
-              '{'
-                '"id": 804,'
-                '"main": "Clouds",'
-                '"description": "overcast clouds",'
-                '"icon": "04n"'
-              '}'
+            '{'
+              '"id": 804,'
+              '"main": "Clouds",'
+              '"description": "overcast clouds",'
+              '"icon": "04n"'
+            '}'
           ']'
         '},'
         '{'
           '"dt": 1604221200,'
           '"main": {'
-            '"temp": 284.89'
+           '"temp": 284.89'
           '},'
           '"weather": ['
             '{'
@@ -104,6 +104,7 @@ main() {
   group('Fetch test', () {
 
     test('Given in input a city, returns a string if the http call completes successfully', () async {
+
       when(client.get('${url}q=$city&appid=')).thenAnswer((_) async => http.Response(json, 200));
 
       final result = await fetchWeatherDataByCity(city, client);
@@ -111,14 +112,16 @@ main() {
       expect(result, isA<List<DayWeather>>());
       expect(result.length, 2);
     });
-    
+
     test('Given in input a city, throws an exception if the http call completes with an error', () {
+
       when(client.get('${url}q=$city&appid=')).thenAnswer((_) async => http.Response('Not found', 404));
 
       expect(fetchWeatherDataByCity(city, client), throwsException);
     });
 
     test('Given in input a position, returns a string if the http call completes successfully', () async {
+
       when(client.get('${url}lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=')).thenAnswer((_) async => http.Response(json, 200));
 
       final result = await fetchWeatherDataByPosition(coordinates, client);
@@ -128,10 +131,11 @@ main() {
     });
 
     test('Given in input a position, throws an exception if the http call completes with an error', () {
+
       when(client.get('${url}lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=')).thenAnswer((_) async => http.Response('Not found', 404));
 
       expect(fetchWeatherDataByPosition(coordinates, client), throwsException);
     });
-    
+
   });
 }

@@ -10,7 +10,7 @@ class ThreeHourWeather {
   factory ThreeHourWeather.fromJson(Map<String, dynamic> json) {
     return ThreeHourWeather(
       date: DateTime.fromMillisecondsSinceEpoch(json['dt'] * 1000, isUtc: true),
-      temperature: json['main']['temp'],
+      temperature: json['main']['temp'].toDouble(),
       weatherDetails: WeatherDetails.fromJson(json['weather'].first.cast<String, dynamic>())
     );
   }

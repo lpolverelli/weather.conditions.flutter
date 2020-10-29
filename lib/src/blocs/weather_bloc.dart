@@ -17,5 +17,6 @@ class WeatherBloc{
     _weatherFetcher.close();
   }
 
-  final bloc = WeatherBloc();
 }
+
+final bloc = WeatherBloc();

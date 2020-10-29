@@ -9,7 +9,7 @@ class MockClient extends Mock implements http.Client {}
 
 main() {
 
-  final url = 'api.openweathermap.org/data/2.5/forecast?';
+  final url = 'https://api.openweathermap.org/data/2.5/forecast?';
   final city = 'Rome';
   final client = MockClient();
   final coordinates = Coordinates(latitude: 34.257, longitude: -85.1647);

@@ -7,7 +7,7 @@ import 'package:weather_conditions_flutter/src/models/day_weather.dart';
 import 'package:weather_conditions_flutter/src/models/three_hour_weather.dart';
 
 final _url = 'https://api.openweathermap.org/data/2.5/forecast?';
-final _apiKey = '9a93636936ed5af65de0ed174c0c9161';
+final _apiKey = '';
 
 Future<List<DayWeather>> fetchWeatherDataByCity(String city, http.Client client) async {
   final responseBody = await _fetchData('${_url}q=$city&appid=$_apiKey', client);

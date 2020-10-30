@@ -7,7 +7,7 @@ class DayWeather {
   final City city;
   final DateTime date;
   final List<ThreeHourWeather> threeHourWeatherList;
-  double maxTemperature, minTemperature;
+  int maxTemperature, minTemperature;
 
   DayWeather(this.city, this.date, this.threeHourWeatherList) {
     maxTemperature = threeHourWeatherList.map((threeHourWeather) => threeHourWeather.temperature).reduce(max);

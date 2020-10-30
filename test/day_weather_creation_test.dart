@@ -15,9 +15,9 @@ void main() {
     final threeHourWeather2 = MockThreeHourWeather();
     final threeHourWeather3 = MockThreeHourWeather();
 
-    when(threeHourWeather1.temperature).thenReturn(285.3);
-    when(threeHourWeather2.temperature).thenReturn(286.2);
-    when(threeHourWeather3.temperature).thenReturn(287.6);
+    when(threeHourWeather1.temperature).thenReturn(285);
+    when(threeHourWeather2.temperature).thenReturn(286);
+    when(threeHourWeather3.temperature).thenReturn(287);
 
     final date = DateTime.fromMicrosecondsSinceEpoch(1603897200 * 1000000, isUtc: true);
 

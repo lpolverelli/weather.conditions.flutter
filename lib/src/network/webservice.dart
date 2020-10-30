@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:weather_conditions_flutter/src/models/city.dart';
-import 'package:weather_conditions_flutter/src/models/coordinates.dart';
 import 'package:weather_conditions_flutter/src/models/day_weather.dart';
 import 'package:weather_conditions_flutter/src/models/three_hour_weather.dart';
 
@@ -10,13 +9,7 @@ final _url = 'https://api.openweathermap.org/data/2.5/forecast?';
 final _apiKey = '';
 
 Future<List<DayWeather>> fetchWeatherDataByCity(String city, http.Client client) async {
-  final responseBody = await _fetchData('${_url}q=$city&appid=$_apiKey', client);
-
-  return _parseDayWeather(responseBody);
-}
-
-Future<List<DayWeather>> fetchWeatherDataByPosition(Coordinates coordinates, http.Client client) async {
-  final responseBody = await _fetchData('${_url}lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=$_apiKey', client);
+  final responseBody = await _fetchData('${_url}q=$city&units=metric&lang=it&appid=$_apiKey', client);
 
   return _parseDayWeather(responseBody);
 }

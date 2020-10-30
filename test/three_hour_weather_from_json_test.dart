@@ -49,7 +49,7 @@ void main() {
     var threeHourWeather = ThreeHourWeather.fromJson(jsonDecode(json).cast<String, dynamic>());
 
     expect(threeHourWeather.date.millisecondsSinceEpoch, DateTime.fromMillisecondsSinceEpoch(1596564000 * 1000).millisecondsSinceEpoch);
-    expect(threeHourWeather.temperature, 293.55);
+    expect(threeHourWeather.temperature, 294);
     expect(threeHourWeather.weatherDetails.id, 500);
     expect(threeHourWeather.weatherDetails.main, 'Rain');
     expect(threeHourWeather.weatherDetails.description, 'light rain');

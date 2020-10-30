@@ -1,7 +1,6 @@
 import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
 import 'package:test/test.dart';
-import 'package:weather_conditions_flutter/src/models/coordinates.dart';
 import 'package:weather_conditions_flutter/src/models/day_weather.dart';
 import 'package:weather_conditions_flutter/src/network/webservice.dart';
 
@@ -12,7 +11,6 @@ main() {
   final url = 'https://api.openweathermap.org/data/2.5/forecast?';
   final city = 'Rome';
   final client = MockClient();
-  final coordinates = Coordinates(latitude: 34.257, longitude: -85.1647);
   final json =
     '{'
       '"cod": "200",'
@@ -105,7 +103,7 @@ main() {
 
     test('Given in input a city, returns a string if the http call completes successfully', () async {
 
-      when(client.get('${url}q=$city&appid=')).thenAnswer((_) async => http.Response(json, 200));
+      when(client.get('${url}q=$city&units=metric&lang=it&appid=')).thenAnswer((_) async => http.Response(json, 200));
 
       final result = await fetchWeatherDataByCity(city, client);
 
@@ -115,26 +113,9 @@ main() {
 
     test('Given in input a city, throws an exception if the http call completes with an error', () {
 
-      when(client.get('${url}q=$city&appid=')).thenAnswer((_) async => http.Response('Not found', 404));
+      when(client.get('${url}q=$city&units=metric&lang=it&appid=')).thenAnswer((_) async => http.Response('Not found', 404));
 
       expect(fetchWeatherDataByCity(city, client), throwsException);
-    });
-
-    test('Given in input a position, returns a string if the http call completes successfully', () async {
-
-      when(client.get('${url}lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=')).thenAnswer((_) async => http.Response(json, 200));
-
-      final result = await fetchWeatherDataByPosition(coordinates, client);
-
-      expect(result, isA<List<DayWeather>>());
-      expect(result.length, 2);
-    });
-
-    test('Given in input a position, throws an exception if the http call completes with an error', () {
-
-      when(client.get('${url}lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=')).thenAnswer((_) async => http.Response('Not found', 404));
-
-      expect(fetchWeatherDataByPosition(coordinates, client), throwsException);
     });
 
   });

@@ -19,7 +19,7 @@ void main() {
     when(threeHourWeather2.temperature).thenReturn(286);
     when(threeHourWeather3.temperature).thenReturn(287);
 
-    final date = DateTime.fromMicrosecondsSinceEpoch(1603897200 * 1000000, isUtc: true);
+    final date = DateTime.fromMillisecondsSinceEpoch(1603897200 * 1000, isUtc: true);
 
     final city = MockCity();
 

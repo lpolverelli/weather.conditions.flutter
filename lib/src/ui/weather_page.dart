@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:weather_conditions_flutter/src/blocs/weather_bloc.dart';
 import 'package:weather_conditions_flutter/src/models/day_weather.dart';
 import 'package:weather_conditions_flutter/src/ui/city_search_delegate.dart';
+import 'package:weather_conditions_flutter/src/ui/detail_page.dart';
 
 class WeatherPage extends StatefulWidget {
   WeatherPage({Key key, this.title}) : super(key: key);
@@ -95,6 +96,14 @@ class _WeatherPageState extends State<WeatherPage> {
                       '${dayWeatherList[index].threeHourWeatherList[(dayWeatherList[index].threeHourWeatherList.length / 2).round() - 1].weatherDetails.icon}'
                       '@4x.png'),
                   isThreeLine: true,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailPage(dayWeather: dayWeatherList[index])
+                      ),
+                    );
+                  },
                 ),
               );
             },

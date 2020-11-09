@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_conditions_flutter/src/blocs/weather_bloc.dart';
+import 'package:weather_conditions_flutter/src/blocs/weather_bloc_observer.dart';
+import 'package:weather_conditions_flutter/src/resources/weather_repository.dart';
 import 'package:weather_conditions_flutter/src/ui/weather_page.dart';
 
 void main() {
-  runApp(WeatherConditionsApp());
+  Bloc.observer = WeatherBlocObserver();
+
+  final WeatherRepository weatherRepository = WeatherRepository();
+  runApp(WeatherConditionsApp(weatherRepository: weatherRepository));
 }
 
 class WeatherConditionsApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final WeatherRepository weatherRepository;
+
+  WeatherConditionsApp({Key key, @required this.weatherRepository})
+      : assert(weatherRepository != null),
+      super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,7 +26,11 @@ class WeatherConditionsApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: WeatherPage(title: '5 Days Weather'),
+      home: BlocProvider(
+        create: (context) =>
+            WeatherBloc(weatherRepository: weatherRepository),
+        child: WeatherPage(title: '5 Days Weather',),
+      )
     );
   }
 }
